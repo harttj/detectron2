@@ -1,0 +1,10 @@
+In a new conda environment do the following in a terminal:
+    Check cuda version to make sure that it is 11.3 or greater
+    pip3 install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+    pip install opencv-python
+    pip install pycocotools==2.0.2
+    python -m pip install detectron2 -f   https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
+This is to test to make sure everything is working
+    python demo.py --config-file ../configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml   --input input1.jpg input2.jpg --opts MODEL.WEIGHTS detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl
+This is to train on the livecell dataset
+    ./train_net_livecell.py --config-file ../configs/COCO-Detection/faster_rcnn_R_50_FPN_3x_livecell.yaml --num-gpus 1 SOLVER.IMS_PER_BATCH 16 SOLVER.BASE_LR 0.0025
